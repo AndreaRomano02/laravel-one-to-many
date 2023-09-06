@@ -13,6 +13,11 @@ class Project extends Model
 
   protected $fillable = ['type_id', 'title', 'image', 'description', 'url'];
 
+  public function type()
+  {
+    return $this->belongsTo(Type::class);
+  }
+
   public function getAbstract()
   {
     return substr($this->description, 0, 120) . '...';
