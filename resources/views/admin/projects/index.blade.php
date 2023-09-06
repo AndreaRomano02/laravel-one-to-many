@@ -13,9 +13,9 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Titolo</th>
+                <th scope="col">Tipo</th>
                 <th scope="col">Descrizione</th>
-                <th scope="col"></th>
-                <th scope="col">URL</th>
+                <th scope="col">Link</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -27,6 +27,12 @@
 
                     {{-- * Titolo --}}
                     <th class="align-middle">{{ $project->title }}</th>
+
+                    {{-- * Tipo --}}
+                    <th class="align-middle">
+                        <span class="badge rounded-pill"
+                            style="background-color:{{ $project->type->color }}; font-size:1rem;">{{ $project->type->label }}</span>
+                    </th>
 
                     {{-- * Descrizione --}}
                     <td class="align-middle">{{ $project->getAbstract() }}</td>
@@ -55,7 +61,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="text-center">
+                    <td colspan="7" class="text-center">
                         <h1>NON CI SONO PROGETTI</h1>
                     </td>
                 </tr>
