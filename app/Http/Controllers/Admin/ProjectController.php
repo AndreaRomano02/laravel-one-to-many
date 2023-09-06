@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Models\Project;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +29,8 @@ class ProjectController extends Controller
   public function create()
   {
     $project = new Project();
-    return view('admin.projects.create', compact('project'));
+    $types = Type::all();
+    return view('admin.projects.create', compact('project', 'types'));
   }
 
   /**
@@ -40,11 +42,13 @@ class ProjectController extends Controller
     //! Validazione
     $request->validate([
       'title' => ['required', Rule::unique('projects', 'title')],
+      'type_id' => 'nullable|exists:types,id',
       'url' => 'url:http,https|nullable',
       'image' => 'image|nullable',
       'description' => 'required|string',
     ], [
       'title.required' => 'Il titolo è obbligatorio.',
+      'type_id.exists' => 'Il campo inserito non esiste nel DB',
       'url.url' => 'l\'url non ininzia con http o https.',
       'image.image' => 'Il file non è un immagine.',
       'description.required' => 'La descrizione è oblligatoria.',
@@ -77,7 +81,8 @@ class ProjectController extends Controller
    */
   public function edit(Project $project)
   {
-    return view('admin.projects.edit', compact('project'));
+    $types = Type::all();
+    return view('admin.projects.edit', compact('project', 'types'));
   }
 
   /**
@@ -88,11 +93,13 @@ class ProjectController extends Controller
     //! Validazione
     $request->validate([
       'title' => ['required', Rule::unique('projects', 'title')->ignore($project)],
+      'type_id' => 'nullable|exists:types,id',
       'description' => 'required|string',
       'url' => 'url:http,https|nullable',
       'image' => 'image|nullable',
     ], [
       'title.required' => 'Il titolo è obbligatorio.',
+      'type_id.exists' => 'Il campo inserito non esiste nel DB',
       'url.url' => 'l\'url non ininzia con http o https.',
       'image.image' => 'Il file non è un immagine.',
       'description.required' => 'La descrizione è oblligatoria.',

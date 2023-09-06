@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('types', function (Blueprint $table) {
       $table->id();
       $table->string('label')->unique();
-      $table->string('color');
+      $table->string('color')->default('#fff');
       $table->timestamps();
     });
   }

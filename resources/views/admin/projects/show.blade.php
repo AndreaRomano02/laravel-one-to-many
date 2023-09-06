@@ -14,6 +14,7 @@
             <p class="card-text mt-2 text-end"><strong>Link a GitHub: </strong><a href="{{ $project->url }}"
                     target="_blank">{{ $project->url }}</a>
             </p>
+            <p><strong>Tipo:</strong> {{ $project->type->label }}</p>
 
             <div class="d-flex justify-content-between">
                 {{-- # Torna alla Index --}}
