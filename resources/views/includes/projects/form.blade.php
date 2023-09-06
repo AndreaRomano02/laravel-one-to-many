@@ -39,7 +39,7 @@
 </div>
 {{-- # Image preview --}}
 <div class="col-1">
-    <img src="{{ old('image', $project->getImagePath() ?? 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=') }}"
+    <img src="{{ $project->image ? $project->getImagePath() : 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=' }}"
         alt="preview" class="img-fluid my-2" id="image-preview">
 </div>
 
