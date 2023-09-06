@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,9 @@ Route::prefix('/admin')->name('admin.')->middleware(['auth', 'verified'])->group
 
   //* RESOURCES
   Route::resource('/projects', ProjectController::class);
+
+  //# Types
+  Route::resource('/types', TypeController::class);
 });
 
 //! PROFILE CONTROLLER

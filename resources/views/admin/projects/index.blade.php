@@ -29,9 +29,13 @@
                     <th class="align-middle">{{ $project->title }}</th>
 
                     {{-- * Tipo --}}
-                    <th class="align-middle">
-                        <span class="badge rounded-pill"
-                            style="background-color:{{ $project->type->color }}; font-size:1rem;">{{ $project->type->label }}</span>
+                    <th class="align-middle text-center">
+                        @if ($project->type)
+                            <span class="badge rounded-pill"
+                                style="background-color:{{ $project->type->color }}; font-size:1rem;">{{ $project->type->label }}</span>
+                        @else
+                            -
+                        @endif
                     </th>
 
                     {{-- * Descrizione --}}
